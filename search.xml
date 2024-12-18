@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>博客搭建和部署到GitHub</title>
+    <url>/2024/12/16/first/</url>
+    <content><![CDATA[<h1 id="关于部署"><a href="#关于部署" class="headerlink" title="关于部署"></a>关于部署</h1><p><a class="link"   href="https://so.csdn.net/so/search?q=Hexo&spm=1001.2101.3001.7020" >Hexo</a><i class="fas fa-search" style="font-size: 0.8em; vertical-align: super; color: #fc5531"></i>&nbsp;是一个静态博客框架，基于<a class="link"   href="https://nodejs.org/" >Node.js</a><span class="icon-wrapper" style="position: relative; display: inline-block;"><i class="far fa-square" style="font-size: 1.1em; vertical-align: super; color: #4ea1db;opacity: 0.7"></i><i class="fas fa-terminal" style="font-size: 0.5em; position: absolute; left: 50%; top: 25%; transform: translate(-50%, -30%); color: #4ea1db"></i></span>，将&nbsp;<a class="link"   href="https://so.csdn.net/so/search?q=Markdown&spm=1001.2101.3001.7020" >Markdown</a><i class="fas fa-search" style="font-size: 0.8em; vertical-align: super; color: #fc5531"></i>&nbsp;文章通过渲染引擎,生成一个静态网页,再结合&nbsp;<a class="link"   href="https://git-scm.com/download" >Git</a><i class="fas fa-search" style="font-size: 0.8em; vertical-align: super; color: #fc5531"></i>&nbsp;命令 (ssh),Hexo 是一个快速、简洁且高效的博客框架。Hexo使用Markdown解析文章,在几秒内,即可利用靓丽的主题生成静态网页。话不多说,直接开始!</p>
+<h2 id="1-下载-Git-与Node-js"><a href="#1-下载-Git-与Node-js" class="headerlink" title="1. 下载 Git 与Node.js"></a>1. 下载 Git 与Node.js</h2><h3 id="1-1-Node-js-的安装"><a href="#1-1-Node-js-的安装" class="headerlink" title="1.1 Node.js 的安装"></a>1.1 Node.js 的安装</h3><p><a class="link"   href="https://nodejs.org/" >Node.js 官网</a> 下载&nbsp;<a class="link"   href="https://so.csdn.net/so/search?q=Nodejs%E5%AE%89%E8%A3%85&spm=1001.2101.3001.7020" >Nodejs</a><i class="fas fa-search" style="font-size: 0.8em; vertical-align: super; color: #fc5531"></i>&nbsp;安装程序，使用命令 <a class="link"   href="https://nodejs.org/" >node</a><span class="icon-wrapper" style="position: relative; display: inline-block;"><i class="far fa-square" style="font-size: 1.1em; vertical-align: super; color: #4ea1db;opacity: 0.7"></i><i class="fas fa-terminal" style="font-size: 0.5em; position: absolute; left: 50%; top: 25%; transform: translate(-50%, -30%); color: #4ea1db"></i></span> -v 查看是否安装成功。</p>
+<h3 id="1-2-Git-的安装"><a href="#1-2-Git-的安装" class="headerlink" title="1.2 Git 的安装"></a>1.2 Git 的安装</h3><p>首先就是去 Git 官网下载 Git安装程序</p>
+<p>·点击Downloads -&gt; 根据你的系统选择Mac os &#x2F; Windows &#x2F; Linux -&gt; 开始下载</p>
+<p>·回到桌面，点击鼠标右键，会出现两个选项 Git GUI Here 和 Git Bash Here，在打开 Cmd (Win+R)，分别输入 git 和 git –version，如果出现如下图的情况，即安装成功！</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/24-12-16/1.jpg"
+                      alt="git安装"
+                >  </p>
+<h2 id="2-Git-的配置"><a href="#2-Git-的配置" class="headerlink" title="2. Git 的配置"></a>2. Git 的配置</h2><h3 id="2-1-Git-配置"><a href="#2-1-Git-配置" class="headerlink" title="2.1 Git 配置"></a>2.1 Git 配置</h3><p>·配置用户名和邮箱</p>
+<p>在桌面点击鼠标右键，点击 Git Bash Here，会出现一个界面如下图所示：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/24-12-16/2.jpg"
+                      alt="git配置"
+                ></p>
+<p>然后分别输入下面的两个命令，并回车：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;你的用户名&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;你的邮箱&quot;</span></span><br><span class="line"><span class="comment"># 一般只要不报错，可以跳过下面寻找.gitconfig文件</span></span><br></pre></td></tr></table></figure></div>
+
+<p>​然后找到.gitconfig 文件，文件存放位置在 C:&#x2F;Users&#x2F;[username]&#x2F;.gitconfig（未找到的话，请开启显示隐藏文件的功能），用编辑器打开，看到如下图所示的内容，即配置成功！</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/24-12-16/3.jpg"
+                      alt="gitconfig文件"
+                ></p>
+<p>·配置GitHub</p>
+<p>创建：</p>
+<p>·新建一个名为你的用户名.github.io的仓库&nbsp;</p>
+<p>·若你的用户名为a，则新建仓库名为a.github.io</p>
+<p>注意：</p>
+<p>·注册的邮箱一定要验证，否则不会成功；</p>
+<p>·仓库名字必须是：用户名.github.io；</p>
+<p>在github上创建仓库</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/24-12-16/4.jpg"
+                      alt="github仓库"
+                ></p>
+<p>·配置SSH 免密登录</p>
+<p>为什么要配置这个呢？因为你提交代码肯定要拥有你的github权限才可以，但是直接使用用户名和密码太不安全了，所以我们使用ssh key来解决本地和服务器的连接问题。</p>
+<p>简单的来说就是给予你当前电脑访问你GitHub 仓库的权限 ~</p>
+<p>操作步骤</p>
+<p>1、在 git bash here 中创建一个ssh密钥</p>
+<p>​ 指令：cd ~&#x2F;.ssh</p>
+<p>如果本地有的话，它会自动进入到了ssh目录下；</p>
+<p>​ 若没有则创建： ssh-keygen -t rsa -C “邮箱” 此处邮箱填写自己的邮箱</p>
+<p>然后enter三连</p>
+<p>生成两个文件： id_rsa id_rsa.pub 存放在 C:\Users\admin.ssh 文件夹下</p>
+<p>注意：pub文件放置的，就是我们的公开的ssh码，也是给管理员这个ssh，让他来添加</p>
+<p>2、在GitHub 或者 Gitee 上添加 SSH key</p>
+<p>Title：随意填写</p>
+<p>Key：将本地的id_rsa.pub文件用记事本打开，复制全部内容粘贴到GitHub 仓库的SSH Keys 位置</p>
+<p>如下图所示：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/24-12-16/5.jpg"
+                      alt="github仓库"
+                ></p>
+<p>添加密钥到github</p>
+<p>至此，你的全部环境均以搭建好，接下来让我们快速开始搭建博客吧 ~</p>
+<h2 id="3-本地安装-Hexo-博客框架并推送到-GitHub"><a href="#3-本地安装-Hexo-博客框架并推送到-GitHub" class="headerlink" title="3. 本地安装 Hexo 博客框架并推送到 GitHub"></a>3. 本地安装 Hexo 博客框架并推送到 GitHub</h2><h3 id="3-1-博客初始化"><a href="#3-1-博客初始化" class="headerlink" title="3.1 博客初始化"></a>3.1 博客初始化</h3><p>1、命令行安装cnpm （加速以后的插件下载，建议git bash here 处安装）</p>
+<p>命令：npm install -g cnpm –registry&#x3D;&#x3D;<a class="link"   href="https://registry.npm.taobao.org/" >https://registry.npm.taobao.org</a></p>
+<p>安装后验证：cnpm -v 出现版本号说明安装成功</p>
+<p>2、命令行安装hexo （安装博客框架）</p>
+<p>命令：cnpm install -g hexo-cli</p>
+<p>安装后验证：hexo -v 出现版本号说明安装成功</p>
+<p>3、在电脑的某个地方新地方新建一个名为HexoData的文件夹（名字可以随便取），比如我的是D:\JAVA项目\HexoData</p>
+<p>这个文件夹将来就作为你存放代码的地方，所以最好不要随便放</p>
+<p>4、在D:\JAVA项目\HexoData 文件夹下右键打开 Git Bash</p>
+<p>并依次执行以下命令</p>
+<p>hexo init 初始化命令，hexo会自动下载一些文件到这个目录，包括node_modules等</p>
+<p>hexo g 生成命令</p>
+<p>hexo s 启动服务</p>
+<p>说明：hexo s 是开启本地预览服务，打开浏览器访问 <a class="link"   href="http://localhost:4000/" >http://localhost:4000</a> 即可看到内容，说明博客初始化以及成功！</p>
+<p>很多人会碰到浏览器一直在转圈但是就是加载不出来的问题，一般情况下是因为端口占用的缘故，</p>
+<p>因为4000这个端口太常见了， 只需要关闭4000端口并重新启动即可</p>
+<p>到此博客的初始化便完成了，此时你可以本地开启服务并访问，下一步便是推送到GitHub 上！</p>
+<h3 id="3-2-将博客部署到-github-个人主页上"><a href="#3-2-将博客部署到-github-个人主页上" class="headerlink" title="3.2 将博客部署到 github 个人主页上"></a>3.2 将博客部署到 github 个人主页上</h3><p>·第一步：在D:\JAVA项目\HexoData目录下安装 hexo-deployer-git 插件 （git bash here 处安装）</p>
+<p>命令：npm install hexo-deployer-git –save</p>
+<p>说明：必须安装，否则执行hexo d 的话会报错</p>
+<p>·第二步：编辑D:\JAVA项目\HexoData目录下的 _config.yml 文件, 在文件末尾修改配置文件：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: github上对应仓库的ssh 链接  </span><br><span class="line">    //也可使用https地址，如：https://github.com/Github用户名/Github用户名.github.io.git            </span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure></div>
+
+<p>说明：仓库的ssh链接如下：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/24-12-16/6.jpg"
+                      alt="仓库ssh链接"
+                ></p>
+<p>SSH链接</p>
+<p>切记：分支branch切记修改为 main，之前github的默认主分支为master，现已经改为main ！！！</p>
+<p>·第三步：在D:\JAVA项目\HexoData目录下, 将本地 blog 推送到 github仓库</p>
+<p>输入命令：hexo d</p>
+<p>也可能需要输入 username &amp; pwd</p>
+<p>推送成功后, 在浏览器中输入对应域名, 即可访问 <a class="link"   href="https://tsuki-polaris.github.io/" >银河失眠计划</a></p>
+<p>至此，你便初步搭建好了一个属于自己的博客！（本地服务不用启动依然可以访问）</p>
+<p>下一步便是进行博客的美化 ~</p>
+<p>此处附加上 hexo 框架常用的指令：</p>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>hexo init</code></td>
+<td>初始化博客</td>
+</tr>
+<tr>
+<td><code>hexo clean</code></td>
+<td>清除缓存和已生成的静态文件</td>
+</tr>
+<tr>
+<td><code>hexo g</code> 或 <code>hexo generate</code></td>
+<td>生成静态文件</td>
+</tr>
+<tr>
+<td><code>hexo s</code> 或 <code>hexo server</code></td>
+<td>启动本地服务器预览</td>
+</tr>
+<tr>
+<td><code>hexo d</code> 或 <code>hexo deploy</code></td>
+<td>部署网站到远程仓库</td>
+</tr>
+<tr>
+<td><code>hexo g -d</code></td>
+<td>生成静态文件并立即部署</td>
+</tr>
+</tbody></table>
+<h3 id="3-3-hexo-博客的主题安装以及个性化修改"><a href="#3-3-hexo-博客的主题安装以及个性化修改" class="headerlink" title="3.3 hexo 博客的主题安装以及个性化修改"></a>3.3 hexo 博客的主题安装以及个性化修改</h3><h5 id="3-3-1-主题下载与安装"><a href="#3-3-1-主题下载与安装" class="headerlink" title="3.3.1 主题下载与安装"></a>3.3.1 主题下载与安装</h5><p>​ 点击 <a class="link"   href="https://github.com/blinkfox/hexo-theme-matery" >传送门</a> 下载 master 分支的最新稳定版的代码，解压缩后，将 hexo-theme-matery 的文件夹复制到你 Hexo 的 themes 文件夹中即可。</p>
+<p>当然你也可以在你的站点目录文件夹下使用 git clone 命令来下载（推荐）：</p>
+<p>​ 直接在D:\JAVA项目\HexoData\themes目录下执行下面的命令（git bash here 处）：</p>
+<p>​ git clone <a class="link"   href="mailto:&#x67;&#105;&#x74;&#64;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#x2e;&#99;&#111;&#109;" >&#x67;&#105;&#x74;&#64;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#x2e;&#99;&#111;&#109;</a>:blinkfox&#x2F;hexo-theme-matery.git 下载完成后便可看到对应的主题文件</p>
+<p>​</p>
+<h4 id="3-3-2-主题的配置与使用"><a href="#3-3-2-主题的配置与使用" class="headerlink" title="3.3.2 主题的配置与使用"></a>3.3.2 主题的配置与使用</h4><h5 id="3-3-2-1-切换主题"><a href="#3-3-2-1-切换主题" class="headerlink" title="3.3.2.1 切换主题"></a>3.3.2.1 切换主题</h5><p>注意：首先需要明白什么是站点配置文件，什么是主题配置文件。</p>
+<p>站点配置文件就是根目录下的配置文件，比如我的博客文件在 D:\JAVA项目\HexoData 下，那么站点配置文件就是 D:\JAVA项目\HexoData_config.yml，</p>
+<p>主题配置文件就是 D:\JAVA项目\HexoData\hexo-theme-matery_config.yml。</p>
+<p>另外注意，配置文件中的标点符号不要出现中文格式的标点符号，不然运行会出错。</p>
+<p>主题下载完成后，将站点配置文件中的 theme 值修改为你下载主题的文件名，此处为 hexo-theme-matery，那么值就修改为 theme: hexo-theme-matery</p>
+<p>一些站点配置文件的其他地方的修改：</p>
+<p>·语言选择：如果为中文用户，则在 language: 后添加值 zh-CN，如果不修改，默认为英语；<br>·网址修改：url: 的值为你的网址名，如 <a class="link"   href="http://xxxx.github.io,如果有域名,则修改为你的域名即可/" >http://xxxx.github.io，如果有域名，则修改为你的域名即可</a>;<br>·站点配置文件有个 per_page属性，建议修改为 6 的倍数，这样网站在适应设备时，有较好的显示效果。</p>
+<h5 id="3-3-2-2-创建标签页面-（首页的标签选项）"><a href="#3-3-2-2-创建标签页面-（首页的标签选项）" class="headerlink" title="3.3.2.2 创建标签页面 （首页的标签选项）"></a>3.3.2.2 创建标签页面 （首页的标签选项）</h5><p>·tags 页是用来展示所有标签的页面，如果在你的博客 source 目录下还没有 tags&#x2F;index.md 文件，那么你就需要新建一个，命令如下（source目录下 右键 git bash here）：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page <span class="string">&quot;tags&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>编辑你刚刚新建的页面文件 &#x2F;source&#x2F;tags&#x2F;index.md，至少需要以下内容：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line"><span class="built_in">date</span>: 2018-09-30 18:23:38</span><br><span class="line"><span class="built_in">type</span>: <span class="string">&quot;tags&quot;</span></span><br><span class="line">layout: <span class="string">&quot;tags&quot;</span></span><br><span class="line">---</span><br></pre></td></tr></table></figure></div>
+
+<p>·categories 页是用来展示所有分类的页面，如果在你的博客 source 目录下还没有 categories&#x2F;index.md 文件，那么你就需要新建一个，命令如下：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page <span class="string">&quot;categories&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>编辑你刚刚新建的页面文件 &#x2F;source&#x2F;categories&#x2F;index.md，至少需要以下内容：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line"><span class="built_in">date</span>: 2018-09-30 17:25:30</span><br><span class="line"><span class="built_in">type</span>: <span class="string">&quot;categories&quot;</span></span><br><span class="line">layout: <span class="string">&quot;categories&quot;</span></span><br><span class="line">---</span><br></pre></td></tr></table></figure></div>
+
+<p>·about 页是用来展示关于我和我的博客信息的页面，如果在你的博客 source 目录下还没有 about&#x2F;index.md 文件，那么你就需要新建一个，命令如下：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page <span class="string">&quot;about&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>编辑你刚刚新建的页面文件 &#x2F;source&#x2F;about&#x2F;index.md，至少需要以下内容：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: about</span><br><span class="line"><span class="built_in">date</span>: 2018-09-30 17:25:30</span><br><span class="line"><span class="built_in">type</span>: <span class="string">&quot;about&quot;</span></span><br><span class="line">layout: <span class="string">&quot;about&quot;</span></span><br><span class="line">---</span><br></pre></td></tr></table></figure></div>
+
+<p>·contact 页是用来展示留言板信息的页面，如果在你的博客 source 目录下还没有 contact&#x2F;index.md 文件，那么你就需要新建一个，命令如下： </p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: contact</span><br><span class="line"><span class="built_in">date</span>: 2018-09-30 17:25:30</span><br><span class="line"><span class="built_in">type</span>: <span class="string">&quot;contact&quot;</span></span><br><span class="line">layout: <span class="string">&quot;contact&quot;</span></span><br><span class="line">---</span><br></pre></td></tr></table></figure></div>
+
+<p>注：本留言板功能依赖于第三方评论系统，请激活你的评论系统才有效果。并且在主题的 _config.yml 文件中，第 19 至 21 行的 “菜单” 配置，取消关于留言板的注释即可。</p>
+<h5 id="3-3-2-3-添加emoji表情支持"><a href="#3-3-2-3-添加emoji表情支持" class="headerlink" title="3.3.2.3 添加emoji表情支持"></a>3.3.2.3 添加emoji表情支持</h5><p>安装命令如下：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-filter-github-emojis --save</span><br></pre></td></tr></table></figure></div>
+
+<p>在 Hexo 根目录下的 _config.yml 文件中，新增以下的配置项：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">ithubEmojis:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  className: github-emoji</span><br><span class="line">  inject: <span class="literal">true</span></span><br><span class="line">  styles:</span><br><span class="line">  customEmojis:</span><br></pre></td></tr></table></figure></div>
+
+<p>执行 hexo clean &amp;&amp; hexo g 重新生成博客文件，然后就可以在文章中对应位置看到你用 emoji 语法写的表情了。</p>
+<h5 id="3-3-2-4-代码高亮"><a href="#3-3-2-4-代码高亮" class="headerlink" title="3.3.2.4 代码高亮"></a>3.3.2.4 代码高亮</h5><p>由于 Hexo 自带的代码高亮主题显示不好看，所以主题中使用到了 <a class="link"   href="https://github.com/ele828/hexo-prism-plugin" >hexo-prism-plugin</a> 的 Hexo 插件来做代码高亮，安装命令如下：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">npm i -S hexo-prism-plugin</span><br></pre></td></tr></table></figure></div>
+
+<p>然后，修改 Hexo 根目录下 _config.yml 文件中 highlight.enable 的值为 false，并新增 prism 插件相关的配置，主要配置如下：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">prism_plugin:</span><br><span class="line">  mode: <span class="string">&#x27;preprocess&#x27;</span>    <span class="comment"># realtime/preprocess</span></span><br><span class="line">  theme: <span class="string">&#x27;tomorrow&#x27;</span></span><br><span class="line">  line_number: <span class="literal">false</span>    <span class="comment"># default false</span></span><br><span class="line">  custom_css:</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="3-3-2-5-开启主页搜索功能"><a href="#3-3-2-5-开启主页搜索功能" class="headerlink" title="3.3.2.5 开启主页搜索功能"></a>3.3.2.5 开启主页搜索功能</h5><p>本主题中还使用到了 <a class="link"   href="https://github.com/wzpan/hexo-generator-search" >hexo-generator-search</a> 的 Hexo 插件来做内容搜索，安装命令如下：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-search --save</span><br></pre></td></tr></table></figure></div>
+
+<p>在 Hexo 根目录下的 _config.yml 文件中，新增以下的配置项：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="3-3-2-6-开启中文链接转拼音功能"><a href="#3-3-2-6-开启中文链接转拼音功能" class="headerlink" title="3.3.2.6 开启中文链接转拼音功能"></a>3.3.2.6 开启中文链接转拼音功能</h5><p>如果你的文章名称是中文的，那么 Hexo 默认生成的永久链接也会有中文，这样不利于 SEO，且 gitment 评论对中文链接也不支持。我们可以用 <a class="link"   href="https://github.com/viko16/hexo-permalink-pinyin" >hexo-permalink-pinyin</a> Hexo 插件使在生成文章时生成中文拼音的永久链接。</p>
+<p>安装命令如下：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">npm i hexo-permalink-pinyin --save</span><br></pre></td></tr></table></figure></div>
+
+<p>在 Hexo 根目录下的 _config.yml 文件中，新增以下的配置项：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">permalink_pinyin:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  separator: <span class="string">&#x27;-&#x27;</span> <span class="comment"># default: &#x27;-&#x27;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>注：除了此插件外，<a class="link"   href="https://github.com/ohroy/hexo-abbrlink" >hexo-abbrlink</a> 插件也可以生成非中文的链接。</p>
+<h5 id="3-3-2-7-开启文章字数统计插件"><a href="#3-3-2-7-开启文章字数统计插件" class="headerlink" title="3.3.2.7 开启文章字数统计插件"></a>3.3.2.7 开启文章字数统计插件</h5><p>如果你想要在文章中显示文章字数、阅读时长信息，可以安装 <a class="link"   href="https://github.com/willin/hexo-wordcount" >hexo-wordcount</a> 插件。</p>
+<p>安装命令如下：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">npm i --save hexo-wordcount</span><br></pre></td></tr></table></figure></div>
+
+<p>然后只需在本主题下的 _config.yml 文件中，激活以下配置项即可：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">wordCount:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">false</span> <span class="comment"># 将这个值设置为 true 即可.</span></span><br><span class="line">  postWordCount: <span class="literal">true</span></span><br><span class="line">  min2read: <span class="literal">true</span></span><br><span class="line">  totalCount: <span class="literal">true</span></span><br></pre></td></tr></table></figure></div>
+
+<h5 id="3-3-2-8-修改页脚"><a href="#3-3-2-8-修改页脚" class="headerlink" title="3.3.2.8 修改页脚"></a>3.3.2.8 修改页脚</h5><p>页脚信息可能需要做定制化修改，而且它不便于做成配置信息，所以可能需要你自己去再修改和加工。修改的地方在主题文件的 &#x2F;layout&#x2F;_partial&#x2F;footer.ejs 文件中，包括站点、使用的主题、访问量等。</p>
+<h5 id="3-3-2-9-新增和修改社交链接"><a href="#3-3-2-9-新增和修改社交链接" class="headerlink" title="3.3.2.9 新增和修改社交链接"></a>3.3.2.9 新增和修改社交链接</h5><p>在主题的 _config.yml 文件中，默认支持 QQ、GitHub 和邮箱等的配置，你可以在主题文件的 &#x2F;layout&#x2F;_partial&#x2F;social-link.ejs 文件中，新增、修改你需要的社交链接地址，增加链接可参考如下代码：</p>
+<p>新增我的CSDN链接</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (theme.socialLink.csdn) &#123; %&gt;</span><br><span class="line">    &lt;a href=<span class="string">&quot;&lt;%= theme.socialLink.csdn %&gt;&quot;</span> class=<span class="string">&quot;tooltipped&quot;</span> target=<span class="string">&quot;_blank&quot;</span> data-tooltip=<span class="string">&quot;关注我的CSDN: &lt;%= theme.socialLink.csdn %&gt;&quot;</span> data-position=<span class="string">&quot;top&quot;</span> data-delay=<span class="string">&quot;50&quot;</span>&gt;</span><br><span class="line">        &lt;i class=<span class="string">&quot;fab fa-csdn&quot;</span>&gt;CSDN&lt;/i&gt;</span><br><span class="line">    &lt;/a&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure></div>
+
+<p>接着你需要在主题配置文件下新增CSDN链接</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">socialLink:</span><br><span class="line">  qq: *********</span><br><span class="line">  weixin: <span class="comment"># https://www.weixin.qq.com/xx.png/</span></span><br><span class="line">  github: <span class="comment"># https://www.github.com/xxx</span></span><br><span class="line">  email: <span class="comment"># https://www.********.com/xxx</span></span><br><span class="line">  facebook: <span class="comment"># https://www.facebook.com/xxx</span></span><br><span class="line">  twitter: <span class="comment"># https://twitter.com/xxx</span></span><br><span class="line">  weibo: <span class="comment"># https://weibo.com/xxx</span></span><br><span class="line">  csdn: <span class="comment"># http://csdn.com/xxx  </span></span><br></pre></td></tr></table></figure></div>
+
+<h5 id="3-3-2-10-自定义修改"><a href="#3-3-2-10-自定义修改" class="headerlink" title="3.3.2.10 自定义修改"></a>3.3.2.10 自定义修改</h5><p>在本主题的 _config.yml 中可以修改部分自定义信息，有以下几个部分：</p>
+<p>·菜单</p>
+<p>·我的梦想</p>
+<p>·首页的音乐播放器和视频播放器配置</p>
+<p>·是否显示推荐文章名称和按钮配置</p>
+<p>·favicon 和 Logo</p>
+<p>·个人信息</p>
+<p>·TOC 目录</p>
+<p>·文章打赏信息</p>
+<p>·复制文章内容时追加版权信息</p>
+<p>·MathJax</p>
+<p>·文章字数统计、阅读时长</p>
+<p>·点击页面的’爱心’效果</p>
+<p>·我的项目</p>
+<p>·我的技能</p>
+<p>·我的相册</p>
+<p>·Gitalk、Gitment、Valine 和 disqus 评论配置</p>
+<p>·<a class="link"   href="https://busuanzi.ibruce.info/" >不蒜子统计</a>和谷歌分析（Google Analytics）</p>
+<p>·默认特色图的集合。当文章没有设置特色图时，本主题会根据文章标题的 hashcode 值取余，来选择展示对应的特色图</p>
+<p>我认为个人博客应该都有自己的风格和特色。如果本主题中的诸多功能和主题色彩你不满意，可以在主题中自定义修改，很多更自由的功能和细节点的修改难以在主题的 _config.yml 中完成，需要修改源代码才来完成。以下列出了可能对你有用的地方：</p>
+<h5 id="3-3-2-11-修改主题颜色"><a href="#3-3-2-11-修改主题颜色" class="headerlink" title="3.3.2.11 修改主题颜色"></a>3.3.2.11 修改主题颜色</h5><p>在主题文件的 &#x2F;source&#x2F;css&#x2F;matery.css 文件中，搜索 .bg-color 来修改背景颜色：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">/* 整体背景颜色，包括导航、移动端的导航、页尾、标签页等的背景颜色. */</span><br><span class="line">.bg-color &#123;</span><br><span class="line">    background-image: linear-gradient(to right, <span class="comment">#4cbf30 0%, #0f9d58 100%);</span></span><br><span class="line">&#125;</span><br><span class="line">/*如果想去掉banner图的颜色渐变效果，请将以下的css属性注释掉或者删除掉即可*/</span><br><span class="line">@-webkit-keyframes rainbow &#123;</span><br><span class="line">   /* 动态切换背景颜色. */</span><br><span class="line">&#125;</span><br><span class="line">@keyframes rainbow &#123;</span><br><span class="line">    /* 动态切换背景颜色. */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>Tips：建议使用第三方工具（如IDE）打开css文件，使用查找功能（ctrl + f）来快速定位</p>
+<h5 id="3-3-2-12-修改banner图和文章特色图"><a href="#3-3-2-12-修改banner图和文章特色图" class="headerlink" title="3.3.2.12 修改banner图和文章特色图"></a>3.3.2.12 修改banner图和文章特色图</h5><p>你可以直接在 &#x2F;source&#x2F;medias&#x2F;banner 文件夹中更换你喜欢的 banner 图片，主题代码中是每天动态切换一张，只需 7 张即可。如果你会 JavaScript 代码，可以修改成你自己喜欢切换逻辑，如：随机切换等，banner 切换的代码位置在 &#x2F;layout&#x2F;_partial&#x2F;bg-cover-content.ejs 文件的 &#96;&#96; 代码中：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$(<span class="string">&#x27;.bg-cover&#x27;</span>).css(<span class="string">&#x27;background-image&#x27;</span>, <span class="string">&#x27;url(/medias/banner/&#x27;</span> + new Date().getDay() + <span class="string">&#x27;.jpg)&#x27;</span>);</span><br></pre></td></tr></table></figure></div>
+
+<p>说明： banner图即为你博客主页所显示的图片 （默认为 0.jpg ）</p>
+<h5 id="3-3-2-13-修改网站上的相关信息"><a href="#3-3-2-13-修改网站上的相关信息" class="headerlink" title="3.3.2.13 修改网站上的相关信息"></a>3.3.2.13 修改网站上的相关信息</h5><p>相关配置信息如下：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#这是根目录下的配置文件信息</span></span><br><span class="line">title: 过客~励む   												<span class="comment">#这是网站标题</span></span><br><span class="line">subtitle: 励む    											 <span class="comment">#这是网站副标题subtitler</span></span><br><span class="line"><span class="comment"># 下面两个description,keywords，需要填上，如果想让搜索引擎收录，这个做SEO优化必不可忽视的两个属性</span></span><br><span class="line">description: 专注于Web,分享生活,分享知识  							<span class="comment">#网站描述</span></span><br><span class="line">keywords: [HTML, CSS, JavaScript, JQuery, React, Vue.js等] 	  <span class="comment">#网站的关键词</span></span><br><span class="line">author: YangAir 											   <span class="comment">#作者，文章版权所显示的</span></span><br><span class="line">language: zh-CN  											   <span class="comment">#网站语言，不填写，默认为英文</span></span><br><span class="line">timezone:   												   <span class="comment">#时区，可以不填写</span></span><br><span class="line"><span class="comment"># 这是主题配置文件的相关信息</span></span><br><span class="line"><span class="comment"># 配置网站favicon和网站LOGO</span></span><br><span class="line"><span class="comment"># 此处我用的CDN，也可以使用本地文件</span></span><br><span class="line">favicon: https://cdn.jsdelivr.net/gh/Yafine/cdn@3.3.4/source/favicon.png</span><br><span class="line">logo: https://cdn.jsdelivr.net/gh/Yafine/cdn@3.3.4/source/logo.png</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 网站副标题，打字效果</span></span><br><span class="line"><span class="comment"># 如果有符号 ‘ ，请在 ’ 前面加上 \</span></span><br><span class="line">subtitle: </span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  loop: <span class="literal">true</span> <span class="comment"># 是否循环</span></span><br><span class="line">  showCursor: <span class="literal">true</span> <span class="comment"># 是否显示光标</span></span><br><span class="line">  startDelay: 300 <span class="comment"># 开始延迟</span></span><br><span class="line">  typeSpeed: 100 <span class="comment"># 打字速度</span></span><br><span class="line">  backSpeed: 50 <span class="comment"># 删除速度</span></span><br><span class="line">  sub1: 志之所向，金石为开，谁能御之？</span><br><span class="line">  sub2: 花开不是为了花落，而是为了开的更加灿烂。</span><br><span class="line">  sub3: 没有伞的孩子必须努力奔跑！</span><br><span class="line">  sub4: 欲望以提升热忱，毅力以磨平高山。</span><br><span class="line">  sub5: 如果放弃太早，你永远都不知道自己会错过什么。</span><br><span class="line">  sub6: 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生。</span><br></pre></td></tr></table></figure></div>
+
+<p>注意：</p>
+<p>网站打字效果副标题默认有两个，即 sub1 和 sub2，如果想写多个，则需要修改两处地方，首先修改配置文件，如上面所示，在 sub1 和 sub2 后面继续添加即可，然后在去主题目录下的 layout 文件夹下的_partial 文件夹，修改 bg-cover-content.ejs 文件，大约在 12 行左右，如下面所示：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"> &lt;div class=<span class="string">&quot;description center-align&quot;</span>&gt;</span><br><span class="line">     &lt;% <span class="keyword">if</span> (theme.subtitle.enable) &#123; %&gt;</span><br><span class="line">         &lt;span <span class="built_in">id</span>=<span class="string">&quot;subtitle&quot;</span>&gt;&lt;/span&gt;</span><br><span class="line">         &lt;script src=<span class="string">&quot;https://cdn.jsdelivr.net/npm/typed.js@2.0.11&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">        &lt;script&gt;</span><br><span class="line">            var typed = new Typed(<span class="string">&quot;#subtitle&quot;</span>, &#123;</span><br><span class="line">                strings: [<span class="string">&#x27;&lt;%= theme.subtitle.sub1 %&gt;&#x27;</span>,</span><br><span class="line">                          <span class="string">&#x27;&lt;%= theme.subtitle.sub2 %&gt;&#x27;</span>,</span><br><span class="line">                          <span class="string">&#x27;&lt;%= theme.subtitle.sub3 %&gt;&#x27;</span>,</span><br><span class="line">                          <span class="string">&#x27;&lt;%= theme.subtitle.sub4 %&gt;&#x27;</span>,</span><br><span class="line">                          <span class="string">&#x27;&lt;%= theme.subtitle.sub5 %&gt;&#x27;</span>,</span><br><span class="line">                          <span class="string">&#x27;&lt;%= theme.subtitle.sub6 %&gt;&#x27;</span>],</span><br><span class="line">                 startDelay: &lt;%= theme.subtitle.startDelay %&gt;,</span><br><span class="line">                 typeSpeed: &lt;%= theme.subtitle.typeSpeed %&gt;,</span><br><span class="line">                 loop: &lt;%= theme.subtitle.loop %&gt;,   </span><br><span class="line">                 backSpeed: &lt;%= theme.subtitle.backSpeed %&gt;,</span><br><span class="line">                 showCursor: &lt;%= theme.subtitle.showCursor %&gt;</span><br><span class="line">              &#125;);</span><br><span class="line">          &lt;/script&gt;</span><br><span class="line">      &lt;% &#125; <span class="keyword">else</span> &#123; %&gt;</span><br><span class="line">            &lt;%= config.description %&gt;</span><br><span class="line">      &lt;% &#125; %&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></div>
+
+<h5 id="3-3-2-14-在关于我页面添加个人简历"><a href="#3-3-2-14-在关于我页面添加个人简历" class="headerlink" title="3.3.2.14 在关于我页面添加个人简历"></a>3.3.2.14 在关于我页面添加个人简历</h5><p>打开 theme&#x2F;matery&#x2F;layout&#x2F;about.ejs 文件，大约在 13 行。有一个 &#96;&#96; 标签，找出其对应结尾的标签，大约在 61 行左右，然后在新增如下代码：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;div class=<span class="string">&quot;card&quot;</span>&gt;</span><br><span class="line">     &lt;div class=<span class="string">&quot;card-content&quot;</span>&gt;</span><br><span class="line">         &lt;div class=<span class="string">&quot;card-content article-card-content&quot;</span>&gt;</span><br><span class="line">             &lt;div class=<span class="string">&quot;title center-align&quot;</span> data-aos=<span class="string">&quot;zoom-in-up&quot;</span>&gt;</span><br><span class="line">                 &lt;i class=<span class="string">&quot;fa fa-address-book&quot;</span>&gt;&lt;/i&gt;&amp;nbsp;&amp;nbsp;&lt;%- __(<span class="string">&#x27;个人简历&#x27;</span>) %&gt;</span><br><span class="line">              &lt;/div&gt;</span><br><span class="line">                 &lt;div <span class="built_in">id</span>=<span class="string">&quot;articleContent&quot;</span> data-aos=<span class="string">&quot;fade-up&quot;</span>&gt;</span><br><span class="line">                     &lt;%- page.content %&gt;</span><br><span class="line">                 &lt;/div&gt;</span><br><span class="line">           &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></div>
+
+<p>注意粘贴的位置和空格要正确，这里的位置随你自己设置，你也可以把简历作为第一个 card，然后 &#x2F;source&#x2F;about&#x2F;index.md 下面写上你的简历了（就像写博客一样）。</p>
+<h4 id="3-3-3-博客的编写以及推送"><a href="#3-3-3-博客的编写以及推送" class="headerlink" title="3.3.3 博客的编写以及推送"></a>3.3.3 博客的编写以及推送</h4><p>·第一步：创建.md文件</p>
+<p>方法1：定位到我们的hexo根目录，Git Bash Here 中执行命令：</p>
+<p>hexo new ‘my-first-blog’ 其中引号内为文章名称</p>
+<p>hexo会帮我们在D:\JAVA项目\HexoData\source_posts 下生成相关.md文件，用这个命令的好处是帮我们自动生成了时间，方法1默认生成如下内容：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">title: my-first-blot</span><br><span class="line"><span class="built_in">date</span>: 2021-11-29 18:21:30</span><br><span class="line">tags:</span><br></pre></td></tr></table></figure></div>
+
+<p>方法2：当然你也可以直接自己打开D:\JAVA项目\HexoData\source_posts 目录新建.md文件</p>
+<p>·第二步：编写并保存</p>
+<p>我们只需要用typora打开这个文件就可以开始写博客了，写完后Ctrl+S 保存关闭即可</p>
+<p>·第三步：清理然后再生成一下，生成后推送到远程仓库即可，hexo根目录下右键Git Bash Here 中依次输入如下命令：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d </span><br></pre></td></tr></table></figure></div>
+
+<p>补充：hexo new page ‘postName’命令和hexo new ‘postName’的区别？</p>
+<p>​hexo new page ‘My-second-blog’最终部署时生成：hexo\public\my-second-blog\index.html，但是它不会作为文章出现在博文目录。</p>
+<p>参考：</p>
+<p>theme-matery 主题官方使用说明 <a class="link"   href="https://github.com/blinkfox/hexo-theme-matery" >https://github.com/blinkfox/hexo-theme-matery</a></p>
+<h1 id="关于更新"><a href="#关于更新" class="headerlink" title="关于更新"></a>关于更新</h1><p>·如果你更新的是一个页面，你完全可以使用 <a class="link"   href="https://so.csdn.net/so/search?q=Hexo&spm=1001.2101.3001.7020" >hexo</a><i class="fas fa-search" style="font-size: 0.8em; vertical-align: super; color: #fc5531"></i> d，它会自动生成并部署整个网站的更新。如果你不介意推送整个 public&#x2F; 文件夹的内容，这种方式更简单直接。</p>
+<p>·如果你只想推送某个页面的更改或控制推送的内容，你可以先运行 hexo generate，然后用 <a class="link"   href="https://so.csdn.net/so/search?spm=1000.2115.3001.4498&q=git&t=&u=" >Git</a><i class="fas fa-search" style="font-size: 0.8em; vertical-align: super; color: #fc5531"></i> 手动提交和推送。</p>
+<p>·这两种方式不是互相排斥的，主要是看你希望如何管理你的更新和部署。</p>
+<h2 id="1-hexo-d-方式："><a href="#1-hexo-d-方式：" class="headerlink" title="1. hexo d 方式："></a>1. hexo d 方式：</h2><p>hexo d 是一键生成并部署整个网站的命令。它会自动执行以下步骤：</p>
+<p>生成静态文件：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate  <span class="comment"># 或者简写为 hexo g</span></span><br></pre></td></tr></table></figure></div>
+
+<p>部署到 GitHub（推送到 gh-pages 分支）：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">hexo deploy  <span class="comment"># 或者简写为 hexo d</span></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="2-git-add-git-commit-git-push-方式："><a href="#2-git-add-git-commit-git-push-方式：" class="headerlink" title="2. git add . + git commit + git push 方式："></a>2. git add . + git commit + git push 方式：</h2><p>当你想手动控制哪些内容被推送到 GitHub 时，你可以按以下步骤操作：</p>
+<p>生成静态文件：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate  <span class="comment"># 或者简写为 hexo g</span></span><br></pre></td></tr></table></figure></div>
+
+<p>添加更改到 Git（包括 public&#x2F; 文件夹中的更新）：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git add .  <span class="comment"># 将所有更改添加到暂存区</span></span><br></pre></td></tr></table></figure></div>
+
+<p>提交更改：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;更新测试页面&quot;</span>  <span class="comment"># 提交更改</span></span><br></pre></td></tr></table></figure></div>
+
+<p>推送更新到 GitHub（推送到 main 或 master 分支）：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git push origin main  <span class="comment"># 或者根据你使用的分支名称，推送到相应分支</span></span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>hexo</tag>
+        <tag>github</tag>
+      </tags>
+  </entry>
+</search>
